@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+canvas {
+    background-color: #000;
+    border: 4px solid #1919A6;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(25, 25, 166, 0.5);
+    max-width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.hidden { display: none !important; }
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border: 2px solid yellow;
+    text-align: center;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', cursive;
+    background: yellow;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+/* Controles Mobile */
+#mobile-controls {
+    display: none;
+    margin-top: 20px;
+}
+
+.d-pad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.d-pad-middle {
+    display: flex;
+    gap: 40px;
+}
+
+.dir-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    border: 2px solid #555;
+    margin: 0;
+}
+
+.dir-btn:active { background: rgba(255, 255, 0, 0.5); }
+
+/* Ativa os controles mobile em telas menores que 768px */
+@media (max-width: 768px) {
+    #mobile-controls { display: block; }
+    header { font-size: 0.6rem; }
+}
