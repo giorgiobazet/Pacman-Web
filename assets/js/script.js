@@ -5,9 +5,6 @@ const LINHAS = 17;
 const COLUNAS = 45;
 const TAM_CELULA = 20;
 
-// ============================================================================
-// BIBLIOTECA DE MAPAS (17x45)
-// ============================================================================
 const mapa1 = [
     "#############################################",
     "#P..........................................#",
@@ -157,6 +154,9 @@ let pontosTotais = 0;
 let pontosColetados = 0;
 let jogoRodando = true;
 
+let jogAntigoX = 0;
+let jogAntigoY = 0;
+
 const coresFantasmas = ["#FF0000", "#FFB8FF", "#00FFFF", "#FFB852"];
 
 function iniciarJogo() {
@@ -208,6 +208,9 @@ function calcularDistancia(x1, y1, x2, y2) {
 }
 
 function processarMovimentoJogador() {
+    jogAntigoX = jogador.x;
+    jogAntigoY = jogador.y;
+
     if (posicaoValida(jogador.x + jogador.proxDirX, jogador.y + jogador.proxDirY)) {
         jogador.dirX = jogador.proxDirX;
         jogador.dirY = jogador.proxDirY;
@@ -220,6 +223,11 @@ function processarMovimentoJogador() {
         jogador.x = nx;
         jogador.y = ny;
 
+        if (fantasmas.some(f => f.x === jogador.x && f.y === jogador.y)) {
+            finalizarJogo(false);
+            return; 
+        }
+
         if (grade[ny][nx] === '.') {
             grade[ny][nx] = ' ';
             pontosColetados++;
@@ -231,6 +239,9 @@ function processarMovimentoJogador() {
 
 function processarMovimentoFantasmas() {
     fantasmas.forEach(f => {
+        let fAntigoX = f.x;
+        let fAntigoY = f.y;
+        
         let tx = jogador.x;
         let ty = jogador.y;
         
@@ -293,7 +304,7 @@ function processarMovimentoFantasmas() {
             f.dirX = melhorOpcao.dx;
             f.dirY = melhorOpcao.dy;
             
-            if (grade[f.y][f.x] !== 'P') {
+            if (grade[f.y][f.x] !== 'P' && grade[f.y][f.x] !== 'G') {
                 f.bg = grade[f.y][f.x];
             } else {
                 f.bg = ' '; 
@@ -301,7 +312,12 @@ function processarMovimentoFantasmas() {
             grade[f.y][f.x] = 'G'; 
         }
 
-        if (f.x === jogador.x && f.y === jogador.y) finalizarJogo(false);
+        let bateuDeFrente = (f.x === jogador.x && f.y === jogador.y);
+        let cruzouNoCaminho = (f.x === jogAntigoX && f.y === jogAntigoY && fAntigoX === jogador.x && fAntigoY === jogador.y);
+        
+        if (bateuDeFrente || cruzouNoCaminho) {
+            finalizarJogo(false);
+        }
     });
 }
 
