@@ -67,7 +67,6 @@ button {
     cursor: pointer;
 }
 
-/* Controles Mobile */
 #mobile-controls {
     display: none;
     margin-top: 20px;
@@ -98,7 +97,6 @@ button {
 
 .dir-btn:active { background: rgba(255, 255, 0, 0.5); }
 
-/* Ativa os controles mobile em telas menores que 768px */
 @media (max-width: 768px) {
     #mobile-controls { display: block; }
     header { font-size: 0.6rem; }

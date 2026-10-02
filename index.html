@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pac-Man Arcade</title>
+    <title>Pac-Man Arcade | Web</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div id="game-container">
@@ -15,7 +15,6 @@
             <div class="score">LEFT<br><span id="restantes" style="color: red;">0</span></div>
         </header>
 
-        <!-- O Canvas usa proporção baseada na nossa matriz de 17 linhas por 45 colunas -->
         <canvas id="tabuleiro" width="900" height="340"></canvas>
 
         <div id="game-over" class="hidden">
@@ -23,7 +22,6 @@
             <button onclick="location.reload()">TENTAR NOVAMENTE</button>
         </div>
 
-        <!-- Controles Mobile (Escondidos no PC) -->
         <div id="mobile-controls">
             <div class="d-pad">
                 <button id="btn-up" class="dir-btn">W</button>
@@ -36,6 +34,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
